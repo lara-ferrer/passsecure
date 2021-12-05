@@ -34,7 +34,7 @@ function processData(response) {
 
         let actions = document.createElement('td');
         let deleteLink = document.createElement('a');
-        deleteLink.innerText = 'Borrar usuario';
+        deleteLink.innerText = 'Borrar sitio';
         deleteLink.href = `https://localhost:5001/Site?Id=${i.id}`;
         deleteLink.onclick = deleteSite;
         actions.appendChild(deleteLink);
