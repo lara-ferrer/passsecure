@@ -1,3 +1,7 @@
+/**
+General styles
+**************************************/
+
 body {
   min-height: 100vh;
   min-height: -webkit-fill-available;
@@ -51,7 +55,7 @@ main {
 .btn-toggle:hover,
 .btn-toggle:focus {
   color: rgba(0, 0, 0, .85);
-  background-color: #d2f4ea;
+  background-color: #8d8d8d;
 }
 
 .btn-toggle::before {
@@ -78,7 +82,7 @@ main {
 }
 .btn-toggle-nav a:hover,
 .btn-toggle-nav a:focus {
-  background-color: #d2f4ea;
+  background-color: #8d8d8d;
 }
 
 .scrollarea {
@@ -87,3 +91,52 @@ main {
 
 .fw-semibold { font-weight: 600; }
 .lh-tight { line-height: 1.25; }
+
+a {
+  text-decoration: none;
+}
+
+.btn-primary a {
+  color: #fff;
+}
+
+/**
+Home page
+**************************************/
+
+.info {
+  padding-left: 3rem;
+}
+
+.info__title, .site__title {
+  padding: 1rem 1rem 1rem 0;
+}
+
+.controls-icon {
+  padding-right: 0.5rem;
+}
+
+.add-site {
+  margin-left: 0.5rem;
+}
+
+/**
+Edit page
+**************************************/
+
+.site-info {
+  width: 35%;
+  padding-left: 3rem;
+}
+
+.site-info input {
+  margin-bottom: 1rem;
+}
+
+.buttons {
+  margin-top: 1rem;
+}
+
+.site-info .btn-danger a {
+  color: #fff;
+}
