@@ -114,10 +114,40 @@ Home page
 
 .controls-icon {
   padding-right: 0.5rem;
+  cursor: pointer;
 }
 
 .add-site {
   margin-left: 0.5rem;
+}
+
+.category {
+  cursor: pointer;
+  display: flex;
+}
+
+.delete-category {
+  display: none;
+}
+
+.delete-category:hover {
+  display: none;
+}
+
+.category:hover > .delete-category {
+  display: block;
+}
+
+.mb-1 {
+  width: 100%;
+}
+
+#sidebar-list li {
+  padding: 0 0 0.5rem 2rem;
+}
+
+#sidebar-list li:first-child {
+  padding-top: 0.5rem;
 }
 
 /**

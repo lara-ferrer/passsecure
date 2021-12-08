@@ -27,11 +27,7 @@
           Categorías
         </button>
         <div class="collapse show" id="home-collapse">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" class="link-dark rounded text-white">Redes sociales</a></li>
-            <li><a href="#" class="link-dark rounded text-white">Herramientas de trabajo</a></li>
-            <li><a href="#" class="link-dark rounded text-white">Streaming</a></li>
-          </ul>
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small" id="sidebar-list"></ul>
         </div>
       </li>
     </ul>
@@ -41,26 +37,7 @@
 
   <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" style="max-width: 100%;">
     <span class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom fs-5 fw-semibold">Categorías<button class="btn btn-primary btn-sm m-3" type="submit" onclick="addCategory()">Crear categoría</button></span>
-    <div class="list-group list-group-flush border-bottom scrollarea">
-      <div class="list-group-item list-group-item-action py-3 lh-tight category" aria-current="true" onclick="setActive()">
-        <div class="d-flex w-100 align-items-center justify-content-between">
-          <strong class="mb-1">Redes sociales</strong>
-        </div>
-        <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
-      </div>
-      <div class="list-group-item list-group-item-action py-3 lh-tight category" onclick="setActive()">
-        <div class="d-flex w-100 align-items-center justify-content-between">
-          <strong class="mb-1">Herramientas de trabajo</strong>
-        </div>
-        <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
-      </div>
-      <div class="list-group-item list-group-item-action py-3 lh-tight category" onclick="setActive()">
-        <div class="d-flex w-100 align-items-center justify-content-between">
-          <strong class="mb-1">Streaming</strong>
-        </div>
-        <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
-      </div>
-    </div>
+    <div class="list-group list-group-flush border-bottom scrollarea" id="list-group"></div>
   </div>
   <div class="info">
     <div class="border-bottom d-flex align-items-center flex-shrink-0">
