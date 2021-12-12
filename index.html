@@ -12,7 +12,6 @@
     
     <!-- Custom styles for this template -->
     <link href="css/styles.css" rel="stylesheet">
-    <link href="css/sidebars.css" rel="stylesheet">
   </head>
   
 <body>
@@ -39,14 +38,14 @@
     <span class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom fs-5 fw-semibold">Categorías<button class="btn btn-primary btn-sm m-3" type="submit" onclick="addCategory()">Crear categoría</button></span>
     <div class="list-group list-group-flush border-bottom scrollarea" id="list-group"></div>
   </div>
-  <div class="info">
+  <div class="info" id="site-view">
     <div class="border-bottom d-flex align-items-center flex-shrink-0">
       <p class="fs-5 fw-semibold info__title">Redes sociales
-        <button class="btn btn-primary btn-sm add-site" type="submit"><a href="site.html">Crear sitio</a></button>
+        <button class="btn btn-primary btn-sm add-site"><a href="site.html" id="add-site">Crear sitio</a></button>
       </p>
     </div>
     <div class="table-responsive">
-      <table class="table table-striped table-sm">
+      <table class="table table-striped table-sm" id="sites-table">
         <thead>
           <tr>
             <th scope="col">ID</th>
