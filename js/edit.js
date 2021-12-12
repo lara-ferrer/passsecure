@@ -1,9 +1,13 @@
+/**
+Edit sites
+**************************************/
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-const id = urlParams.get('id');
+const siteId = urlParams.get('id');
+const categoryId = urlParams.get('category');
 
-if (id) {
-    fetch(`https://localhost:5001/Site/${id}`, {
+if (siteId) {
+    fetch(`https://localhost:5001/Site/${siteId}`, {
     method: 'GET'
     }).then(response => {
         return response.json()
@@ -29,18 +33,38 @@ function editSite(response) {
     desc.innerText = `${response.description}`;
 }
 
+
+/**
+Add sites
+**************************************/
 const form = document.getElementById("site-form");
 
 form.addEventListener("submit", function(e) {
   e.preventDefault();
 
-  const formData = new FormData(form);
+    const formData = new FormData(form);
+
+    var id = Math.floor(Math.random() * 100);
+    formData.append('id', id);
+
+    var date = new Date();
+    date.toLocaleDateString();
+    formData.append('creationDate', date);
+
+    formData.append('categoryId', categoryId);
+    
+    const plainFormData = Object.fromEntries(formData.entries());
+	const formDataJsonString = JSON.stringify(plainFormData);
+    
     fetch('https://localhost:5001/Site', {
     method: 'POST',
-    body: formData
+    body: formDataJsonString,
+    headers: {
+        'Content-Type': 'application/json'
+    },
     }).then(response => {
         return response.json()
     }).then(response => 
-        console.log(response)
+        window.location.href = "http://127.0.0.1:5500/web/"
     )
 });
