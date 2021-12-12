@@ -1,3 +1,7 @@
+/**
+General styles
+**************************************/
+
 body {
   min-height: 100vh;
   min-height: -webkit-fill-available;
@@ -51,13 +55,13 @@ main {
 .btn-toggle:hover,
 .btn-toggle:focus {
   color: rgba(0, 0, 0, .85);
-  background-color: #d2f4ea;
+  background-color: #8d8d8d;
 }
 
 .btn-toggle::before {
   width: 1.25em;
   line-height: 0;
-  content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgba%280,0,0,.5%29' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e");
+  content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='7' height='16' viewBox='0 0 17 26' fill='none' %3e%3cpath d='M0.895873 3.4375L10.4375 13L0.895874 22.5625L3.83337 25.5L16.3334 13L3.83337 0.500001L0.895873 3.4375Z' fill='white' /%3e%3c/svg%3e");
   transition: transform .35s ease;
   transform-origin: .5em 50%;
 }
@@ -78,7 +82,7 @@ main {
 }
 .btn-toggle-nav a:hover,
 .btn-toggle-nav a:focus {
-  background-color: #d2f4ea;
+  background-color: #8d8d8d;
 }
 
 .scrollarea {
@@ -87,3 +91,82 @@ main {
 
 .fw-semibold { font-weight: 600; }
 .lh-tight { line-height: 1.25; }
+
+a {
+  text-decoration: none;
+}
+
+.btn-primary a {
+  color: #fff;
+}
+
+/**
+Home page
+**************************************/
+
+.info {
+  padding-left: 3rem;
+}
+
+.info__title, .site__title {
+  padding: 1rem 1rem 1rem 0;
+}
+
+.controls-icon {
+  padding-right: 0.5rem;
+  cursor: pointer;
+}
+
+.add-site {
+  margin-left: 0.5rem;
+}
+
+.category {
+  cursor: pointer;
+  display: flex;
+}
+
+.delete-category {
+  display: none;
+}
+
+.delete-category:hover {
+  display: none;
+}
+
+.category:hover > .delete-category {
+  display: block;
+}
+
+.mb-1 {
+  width: 100%;
+}
+
+#sidebar-list li {
+  padding: 0 0 0.5rem 2rem;
+}
+
+#sidebar-list li:first-child {
+  padding-top: 0.5rem;
+}
+
+/**
+Edit page
+**************************************/
+
+.site-info {
+  width: 35%;
+  padding-left: 3rem;
+}
+
+.site-info input {
+  margin-bottom: 1rem;
+}
+
+.buttons {
+  margin-top: 1rem;
+}
+
+.site-info .btn-danger a {
+  color: #fff;
+}
