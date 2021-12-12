@@ -3,14 +3,6 @@ Get sites
 **************************************/
 
 window.onload = function () {
-    fetch('https://localhost:5001/Site', {
-        method: 'GET'
-    }).then(response => {
-        return response.json()
-    }).then(data =>
-        processSites(data)
-    );
-
     fetch('https://localhost:5001/Category', {
         method: 'GET'
     }).then(response => {
@@ -20,9 +12,18 @@ window.onload = function () {
     );
 }
 
-function processSites(response) {
-    let tbody = document.getElementById('table-content');
+function getSites(id) {
+    fetch(`https://localhost:5001/Site/${id}`, {
+        method: 'GET'
+    }).then(response => {
+        return response.json()
+    }).then(data =>
+        processSites(data)
+    );
+}
 
+var tbody = document.getElementById('table-content');
+function processSites(response) {
     response.forEach(i => {
         let tr = document.createElement('tr');
 
@@ -87,20 +88,27 @@ Add more categories
 **************************************/
 function addCategory() {
     var name = prompt("Escribe el nombre de la categoría");
-    var id = Math.floor(Math.random() * 100);
-    var data = {"id": id, "name": name};
+    if (name == "") {
+        alert("No has escogido un nombre para la categoría. Vuelve a intentarlo de nuevo.")
+    } else {
+        var id = Math.floor(Math.random() * 100);
+        var data = {
+            "id": id,
+            "name": name
+        };
 
-    fetch('https://localhost:5001/Category', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-    }).then(response => {
-        return response.json()
-    }).then(response => 
-        console.log(response)
-    )
+        fetch('https://localhost:5001/Category', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(response => {
+            return response.json()
+        }).then(response =>
+            window.location.reload()
+        )
+    }
 }
 
 /**
@@ -124,6 +132,7 @@ function processCategories(response) {
         let categoryItem = document.createElement('div');
         Object.assign(categoryItem, {
             className: 'list-group-item list-group-item-action py-3 lh-tight category',
+            id: i.id
         })
 
         let categoryTitle = document.createElement('strong');
@@ -143,9 +152,18 @@ function processCategories(response) {
         categoryItem.appendChild(categoryTitle);
         categoryItem.appendChild(deleteCategory);
         categoryList.appendChild(categoryItem);
-
-        activateCategories();
     });
+
+    activateCategories();
+}
+
+/**
+Clear all sites rendered
+**************************************/
+function clearSites() {
+    while (tbody.firstChild) {
+        tbody.removeChild(tbody.firstChild);
+    }
 }
 
 /**
@@ -153,16 +171,26 @@ Set active category
 **************************************/
 function activateCategories() {
     var categories = Array.from(document.getElementsByClassName('category'));
-    const setActive = (e) => {
+    var siteView = document.getElementById('site-view');
+    siteView.style.display = 'none';
+    
+    const setActive = id => (e) => {
         e.preventDefault();
         categories.forEach(category => {
             category.classList.remove('active');
+            clearSites();
         });
         e.currentTarget.classList.add('active');
+        siteView.style.display = 'block';
+        getSites(id);
+
+        // Add sites in specific categories
+        var addSite = document.getElementById('add-site');
+        addSite.href = `http://127.0.0.1:5500/web/site.html?category=${id}`;
     }
 
     categories.forEach(category => {
-        category.addEventListener('click', setActive);
+        category.addEventListener('click', setActive(category.id));
     });
 }
 
