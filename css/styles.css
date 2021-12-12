@@ -61,7 +61,7 @@ main {
 .btn-toggle::before {
   width: 1.25em;
   line-height: 0;
-  content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgba%280,0,0,.5%29' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e");
+  content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='7' height='16' viewBox='0 0 17 26' fill='none' %3e%3cpath d='M0.895873 3.4375L10.4375 13L0.895874 22.5625L3.83337 25.5L16.3334 13L3.83337 0.500001L0.895873 3.4375Z' fill='white' /%3e%3c/svg%3e");
   transition: transform .35s ease;
   transform-origin: .5em 50%;
 }
