@@ -7,7 +7,7 @@ const siteId = urlParams.get('id');
 const categoryId = urlParams.get('category');
 
 if (siteId) {
-    fetch(`https://localhost:5001/Site/${siteId}`, {
+    fetch(`https://passsecureapi.azurewebsites.net/Site/${siteId}`, {
     method: 'GET'
     }).then(response => {
         return response.json()
@@ -56,7 +56,7 @@ form.addEventListener("submit", function(e) {
     const plainFormData = Object.fromEntries(formData.entries());
 	const formDataJsonString = JSON.stringify(plainFormData);
     
-    fetch('https://localhost:5001/Site', {
+    fetch('https://passsecureapi.azurewebsites.net/Site', {
     method: 'POST',
     body: formDataJsonString,
     headers: {
@@ -65,6 +65,6 @@ form.addEventListener("submit", function(e) {
     }).then(response => {
         return response.json()
     }).then(response => 
-        window.location.href = "http://127.0.0.1:5500/web/"
+        window.location.href = "https://wonderful-dune-0903caf03.azurestaticapps.net/"
     )
 });

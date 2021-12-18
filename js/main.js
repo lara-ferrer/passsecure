@@ -3,7 +3,7 @@ Get sites
 **************************************/
 
 window.onload = function () {
-    fetch('https://localhost:5001/Category', {
+    fetch('https://passsecureapi.azurewebsites.net/Category', {
         method: 'GET'
     }).then(response => {
         return response.json()
@@ -13,7 +13,7 @@ window.onload = function () {
 }
 
 function getSites(id) {
-    fetch(`https://localhost:5001/Site/${id}`, {
+    fetch(`https://passsecureapi.azurewebsites.net/Site/${id}`, {
         method: 'GET'
     }).then(response => {
         return response.json()
@@ -47,12 +47,12 @@ function processSites(response) {
             className: 'controls-icon',
             src: 'assets/delete.svg',
         })
-        deleteLink.href = `https://localhost:5001/Site?Id=${i.id}`;
+        deleteLink.href = `https://passsecureapi.azurewebsites.net/Site?Id=${i.id}`;
         deleteLink.onclick = deleteSite;
 
         let editLink = document.createElement('a');
         editLink.innerHTML = '<img src="assets/edit.svg" class="controls-icon" />';
-        editLink.href = `http://127.0.0.1:5500/web/site.html?id=${i.id}`;
+        editLink.href = `https://wonderful-dune-0903caf03.azurestaticapps.net/site.html?id=${i.id}`;
 
         actions.appendChild(externalLink);
         actions.appendChild(deleteLink);
@@ -97,7 +97,7 @@ function addCategory() {
             "name": name
         };
 
-        fetch('https://localhost:5001/Category', {
+        fetch('https://passsecureapi.azurewebsites.net/Category', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -146,7 +146,7 @@ function processCategories(response) {
             className: 'delete-category controls-icon',
             src: 'assets/delete.svg',
         })
-        deleteCategory.href = `https://localhost:5001/Category?Id=${i.id}`;
+        deleteCategory.href = `https://passsecureapi.azurewebsites.net/Category?Id=${i.id}`;
         deleteCategory.onclick = deleteSelectedCategory;
 
         categoryItem.appendChild(categoryTitle);
@@ -186,7 +186,7 @@ function activateCategories() {
 
         // Add sites in specific categories
         var addSite = document.getElementById('add-site');
-        addSite.href = `http://127.0.0.1:5500/web/site.html?category=${id}`;
+        addSite.href = `https://wonderful-dune-0903caf03.azurestaticapps.net/site.html?category=${id}`;
     }
 
     categories.forEach(category => {
