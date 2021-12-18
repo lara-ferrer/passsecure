@@ -8,7 +8,11 @@ const categoryId = urlParams.get('category');
 
 if (siteId) {
     fetch(`https://passsecureapi.azurewebsites.net/Site/${siteId}`, {
-    method: 'GET'
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+    },
     }).then(response => {
         return response.json()
     }).then(data => 
@@ -60,11 +64,12 @@ form.addEventListener("submit", function(e) {
     method: 'POST',
     body: formDataJsonString,
     headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
     },
     }).then(response => {
         return response.json()
     }).then(response => 
-        window.location.href = "https://wonderful-dune-0903caf03.azurestaticapps.net/"
+        window.location.href = "/"
     )
 });

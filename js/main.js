@@ -4,7 +4,11 @@ Get sites
 
 window.onload = function () {
     fetch('https://passsecureapi.azurewebsites.net/Category', {
-        method: 'GET'
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        },
     }).then(response => {
         return response.json()
     }).then(data =>
@@ -14,7 +18,11 @@ window.onload = function () {
 
 function getSites(id) {
     fetch(`https://passsecureapi.azurewebsites.net/Site/${id}`, {
-        method: 'GET'
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        },
     }).then(response => {
         return response.json()
     }).then(data =>
@@ -52,7 +60,7 @@ function processSites(response) {
 
         let editLink = document.createElement('a');
         editLink.innerHTML = '<img src="assets/edit.svg" class="controls-icon" />';
-        editLink.href = `https://wonderful-dune-0903caf03.azurestaticapps.net/site.html?id=${i.id}`;
+        editLink.href = `/site.html?id=${i.id}`;
 
         actions.appendChild(externalLink);
         actions.appendChild(deleteLink);
@@ -100,7 +108,8 @@ function addCategory() {
         fetch('https://passsecureapi.azurewebsites.net/Category', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
             },
             body: JSON.stringify(data)
         }).then(response => {
@@ -186,7 +195,7 @@ function activateCategories() {
 
         // Add sites in specific categories
         var addSite = document.getElementById('add-site');
-        addSite.href = `https://wonderful-dune-0903caf03.azurestaticapps.net/site.html?category=${id}`;
+        addSite.href = `/site.html?category=${id}`;
     }
 
     categories.forEach(category => {
@@ -203,7 +212,11 @@ function deleteSelectedCategory(e) {
     var e = e.target.href;
 
     fetch(e, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        },
     }).then(() => {
         window.location.reload();
     });
