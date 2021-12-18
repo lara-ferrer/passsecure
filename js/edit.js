@@ -52,7 +52,7 @@ form.addEventListener("submit", function(e) {
     formData.append('id', id);
 
     var date = new Date();
-    date.toLocaleDateString();
+    date = date.getDate() + "/" + date.getMonth()+ "/" + date.getFullYear();
     formData.append('creationDate', date);
 
     formData.append('categoryId', categoryId);
