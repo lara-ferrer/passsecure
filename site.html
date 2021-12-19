@@ -17,20 +17,16 @@
 <body>
 <main>
   <div class="flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
-    <a href="/web" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
+    <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
       <span class="fs-5 fw-semibold text-white">PassSecure</span>
     </a>
     <ul class="list-unstyled ps-0">
       <li class="mb-1">
         <button class="btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
-          Home
+          Categorías
         </button>
         <div class="collapse show" id="home-collapse">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" class="link-dark rounded text-white">Redes sociales</a></li>
-            <li><a href="#" class="link-dark rounded text-white">Herramientas de trabajo</a></li>
-            <li><a href="#" class="link-dark rounded text-white">Streaming</a></li>
-          </ul>
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small" id="sidebar-list"></ul>
         </div>
       </li>
     </ul>
@@ -39,27 +35,8 @@
   <div class="b-example-divider"></div>
 
   <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" style="max-width: 100%;">
-    <span class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom fs-5 fw-semibold">Categorías</span>
-    <div class="list-group list-group-flush border-bottom scrollarea">
-      <div class="list-group-item list-group-item-action py-3 lh-tight active" aria-current="true" onClick="activeElement()">
-        <div class="d-flex w-100 align-items-center justify-content-between">
-          <strong class="mb-1">Redes sociales</strong>
-        </div>
-        <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
-      </div>
-      <div class="list-group-item list-group-item-action py-3 lh-tight" onClick="activeElement()">
-        <div class="d-flex w-100 align-items-center justify-content-between">
-          <strong class="mb-1">Herramientas de trabajo</strong>
-        </div>
-        <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
-      </div>
-      <div class="list-group-item list-group-item-action py-3 lh-tight" onClick="activeElement()">
-        <div class="d-flex w-100 align-items-center justify-content-between">
-          <strong class="mb-1">Streaming</strong>
-        </div>
-        <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
-      </div>
-    </div>
+    <span class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom fs-5 fw-semibold">Categorías<button class="btn btn-primary btn-sm m-3" type="submit" onclick="addCategory()">Crear categoría</button></span>
+    <div class="list-group list-group-flush border-bottom scrollarea" id="list-group"></div>
   </div>
   <div class="site-info">
     <p class="d-flex align-items-center flex-shrink-0 link-dark text-decoration-none border-bottom fs-5 fw-semibold site__title">Redes sociales</p>
@@ -95,6 +72,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="js/toggleSidebar.js"></script>
+  <script src="js/main.js"></script>
   <script src="js/edit.js"></script>
   </body>
 </html>

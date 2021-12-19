@@ -7,8 +7,12 @@ const siteId = urlParams.get('id');
 const categoryId = urlParams.get('category');
 
 if (siteId) {
-    fetch(`https://localhost:5001/Site/${siteId}`, {
-    method: 'GET'
+    fetch(`https://passsecureapi.azurewebsites.net/Site/${siteId}`, {
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+    },
     }).then(response => {
         return response.json()
     }).then(data => 
@@ -48,7 +52,7 @@ form.addEventListener("submit", function(e) {
     formData.append('id', id);
 
     var date = new Date();
-    date.toLocaleDateString();
+    date = date.getDate() + "/" + date.getMonth()+ "/" + date.getFullYear();
     formData.append('creationDate', date);
 
     formData.append('categoryId', categoryId);
@@ -56,15 +60,16 @@ form.addEventListener("submit", function(e) {
     const plainFormData = Object.fromEntries(formData.entries());
 	const formDataJsonString = JSON.stringify(plainFormData);
     
-    fetch('https://localhost:5001/Site', {
+    fetch('https://passsecureapi.azurewebsites.net/Site', {
     method: 'POST',
     body: formDataJsonString,
     headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
     },
     }).then(response => {
         return response.json()
     }).then(response => 
-        window.location.href = "http://127.0.0.1:5500/web/"
+        window.location.href = "/"
     )
 });
