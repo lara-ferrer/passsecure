@@ -7,64 +7,105 @@ const siteId = urlParams.get('id');
 const categoryId = urlParams.get('category');
 
 if (siteId) {
-    fetch(`https://localhost:5001/Site/${siteId}`, {
-    method: 'GET'
+    fetch(`https://passsecureapi.azurewebsites.net/Site/GetBySiteID/${siteId}`, {
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+    },
     }).then(response => {
         return response.json()
     }).then(data => 
-        editSite(data)
+        getSingleSite(data)
     )
 }
 
-function editSite(response) {
-    let mainTitle = document.getElementsByClassName('site__title');
-    mainTitle.innerText = `Editar ${response.name}`;
+const form = document.getElementById("site-form");
 
-    let name = document.getElementById('name');
-    name.value = `${response.name}`;
+function getSingleSite(response) {
+    response.forEach((item) => {
+        let mainTitle = document.getElementById('site__title');
+        mainTitle.innerText = `Editar ${item.name}`;
+    
+        let id = item.id;
+        let name = document.getElementById('name');
+        name.value = `${item.name}`;
+    
+        let url = document.getElementById('url');
+        url.value = `${item.url}`;
 
-    let url = document.getElementById('url');
-    url.value = `${response.url}`;
+        let user = document.getElementById('user');
+        user.value = `${item.user}`;
+    
+        let pass = document.getElementById('pass');
+        pass.value = `${item.password}`;
+    
+        let desc = document.getElementById('desc');
+        desc.innerText = `${item.description}`;
 
-    let pass = document.getElementById('pass');
-    pass.value = `${response.password}`;
-
-    let desc = document.getElementById('desc');
-    desc.innerText = `${response.description}`;
+        console.log(item)
+        editSite(id, creationDate);
+    })
 }
 
+function editSite(id, creationDate) {
+    form.addEventListener("submit", function(e) {
+        e.preventDefault();
+    
+        const formData = new FormData(form);
+    
+        formData.append('id', id);
+        formData.append('creationDate', creationDate);
+        
+        const plainFormData = Object.fromEntries(formData.entries());
+        const formDataJsonString = JSON.stringify(plainFormData);
+        console.log(formDataJsonString)
+        fetch('https://passsecureapi.azurewebsites.net/Site', {
+        method: 'PUT',
+        body: formDataJsonString,
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        },
+        }).then(response => {
+            return response.json()
+        }).then(response => 
+            window.location.href = "/"
+        )
+    });
+}
 
 /**
 Add sites
 **************************************/
-const form = document.getElementById("site-form");
 
-form.addEventListener("submit", function(e) {
-  e.preventDefault();
+// form.addEventListener("submit", function(e) {
+//     e.preventDefault();
 
-    const formData = new FormData(form);
+//     const formData = new FormData(form);
 
-    var id = Math.floor(Math.random() * 100);
-    formData.append('id', id);
+//     var id = Math.floor(Math.random() * 100);
+//     formData.append('id', id);
 
-    var date = new Date();
-    date.toLocaleDateString();
-    formData.append('creationDate', date);
+//     var date = new Date();
+//     date = date.getDate() + "/" + date.getMonth()+ "/" + date.getFullYear();
+//     formData.append('creationDate', date);
 
-    formData.append('categoryId', categoryId);
+//     formData.append('categoryId', categoryId);
     
-    const plainFormData = Object.fromEntries(formData.entries());
-	const formDataJsonString = JSON.stringify(plainFormData);
+//     const plainFormData = Object.fromEntries(formData.entries());
+// 	   const formDataJsonString = JSON.stringify(plainFormData);
     
-    fetch('https://localhost:5001/Site', {
-    method: 'POST',
-    body: formDataJsonString,
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    }).then(response => {
-        return response.json()
-    }).then(response => 
-        window.location.href = "http://127.0.0.1:5500/web/"
-    )
-});
+//     fetch('https://passsecureapi.azurewebsites.net/Site', {
+//     method: 'POST',
+//     body: formDataJsonString,
+//     headers: {
+//         'Content-Type': 'application/json',
+//         'Access-Control-Allow-Origin': '*'
+//     },
+//     }).then(response => {
+//         return response.json()
+//     }).then(response => 
+//         window.location.href = "/"
+//     )
+// });
