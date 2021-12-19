@@ -17,7 +17,7 @@ window.onload = function () {
 }
 
 function getSites(id) {
-    fetch(`https://passsecureapi.azurewebsites.net/Site/${id}`, {
+    fetch(`https://passsecureapi.azurewebsites.net/Site/GetByCategoryID/${id}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
