@@ -96,7 +96,7 @@ Add more categories
 **************************************/
 function addCategory() {
     var name = prompt("Escribe el nombre de la categoría");
-    if (name == "") {
+    if (name == "" || name == null) {
         alert("No has escogido un nombre para la categoría. Vuelve a intentarlo de nuevo.")
     } else {
         var id = Math.floor(Math.random() * 100);

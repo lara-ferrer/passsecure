@@ -47,31 +47,48 @@ function getSingleSite(response) {
     })
 }
 
-function editSite(id, creationDate) {
-    form.addEventListener("submit", function(e) {
-        e.preventDefault();
-    
-        const formData = new FormData(form);
-    
-        formData.append('id', id);
-        formData.append('creationDate', creationDate);
+if (siteId != null) {
+    function editSite(id, creationDate) {
+        form.addEventListener("submit", function(e) {
+            e.preventDefault();
         
-        const plainFormData = Object.fromEntries(formData.entries());
-        const formDataJsonString = JSON.stringify(plainFormData);
-        console.log(formDataJsonString)
-        fetch('https://passsecureapi.azurewebsites.net/Site', {
-        method: 'PUT',
-        body: formDataJsonString,
-        headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
-        },
-        }).then(response => {
-            return response.json()
-        }).then(response => 
-            window.location.href = "/"
-        )
-    });
+            const formData = new FormData(form);
+        
+            formData.append('id', id);
+            formData.append('creationDate', creationDate);
+            
+            const plainFormData = Object.fromEntries(formData.entries());
+            const formDataJsonString = JSON.stringify(plainFormData);
+            fetch('https://passsecureapi.azurewebsites.net/Site', {
+            method: 'PUT',
+            body: formDataJsonString,
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            }).then(response => {
+                return response.json()
+            }).then(response => 
+                window.location.href = "/"
+            )
+        });
+    }
+}
+
+/**
+Autogenerate secure password
+**************************************/
+function generatePass() {
+    var chars = "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    var passwordLength = 12;
+    var password = "";
+
+    for (var i = 0; i <= passwordLength; i++) {
+        var randomNumber = Math.floor(Math.random() * chars.length);
+        password += chars.substring(randomNumber, randomNumber +1);
+    }
+
+    document.getElementById("pass").value = password;
 }
 
 /**
@@ -95,33 +112,33 @@ function generatePass() {
 Add sites
 **************************************/
 
-// form.addEventListener("submit", function(e) {
-//     e.preventDefault();
+form.addEventListener("submit", function(e) {
+    e.preventDefault();
 
-//     const formData = new FormData(form);
+    const formData = new FormData(form);
 
-//     var id = Math.floor(Math.random() * 100);
-//     formData.append('id', id);
+    var id = Math.floor(Math.random() * 100);
+    formData.append('id', id);
 
-//     var date = new Date();
-//     date = date.getDate() + "/" + date.getMonth()+ "/" + date.getFullYear();
-//     formData.append('creationDate', date);
+    var date = new Date();
+    date = date.getDate() + "/" + date.getMonth()+ "/" + date.getFullYear();
+    formData.append('creationDate', date);
 
-//     formData.append('categoryId', categoryId);
+    formData.append('categoryId', categoryId);
     
-//     const plainFormData = Object.fromEntries(formData.entries());
-// 	   const formDataJsonString = JSON.stringify(plainFormData);
+    const plainFormData = Object.fromEntries(formData.entries());
+	   const formDataJsonString = JSON.stringify(plainFormData);
     
-//     fetch('https://passsecureapi.azurewebsites.net/Site', {
-//     method: 'POST',
-//     body: formDataJsonString,
-//     headers: {
-//         'Content-Type': 'application/json',
-//         'Access-Control-Allow-Origin': '*'
-//     },
-//     }).then(response => {
-//         return response.json()
-//     }).then(response => 
-//         window.location.href = "/"
-//     )
-// });
+    fetch('https://passsecureapi.azurewebsites.net/Site', {
+    method: 'POST',
+    body: formDataJsonString,
+    headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+    },
+    }).then(response => {
+        return response.json()
+    }).then(response => 
+        window.location.href = "/"
+    )
+});
