@@ -43,7 +43,6 @@ function getSingleSite(response) {
         let desc = document.getElementById('desc');
         desc.innerText = `${item.description}`;
 
-        console.log(item)
         editSite(id, creationDate);
     })
 }
@@ -69,9 +68,27 @@ if (siteId != null) {
             },
             }).then(response => {
                 return response.json()
-            })
+            }).then(response => 
+                window.location.href = "/"
+            )
         });
     }
+}
+
+/**
+Autogenerate secure password
+**************************************/
+function generatePass() {
+    var chars = "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    var passwordLength = 12;
+    var password = "";
+
+    for (var i = 0; i <= passwordLength; i++) {
+        var randomNumber = Math.floor(Math.random() * chars.length);
+        password += chars.substring(randomNumber, randomNumber +1);
+    }
+
+    document.getElementById("pass").value = password;
 }
 
 /**
@@ -93,7 +110,7 @@ form.addEventListener("submit", function(e) {
     formData.append('categoryId', categoryId);
     
     const plainFormData = Object.fromEntries(formData.entries());
-	const formDataJsonString = JSON.stringify(plainFormData);
+	   const formDataJsonString = JSON.stringify(plainFormData);
     
     fetch('https://passsecureapi.azurewebsites.net/Site', {
     method: 'POST',
@@ -104,5 +121,7 @@ form.addEventListener("submit", function(e) {
     },
     }).then(response => {
         return response.json()
-    })
+    }).then(response => 
+        window.location.href = "/"
+    )
 });
