@@ -29,6 +29,8 @@ function getSingleSite(response) {
         mainTitle.innerText = `Editar ${item.name}`;
     
         let id = item.id;
+        let creationDate = item.creationDate;
+
         let name = document.getElementById('name');
         name.value = `${item.name}`;
     
