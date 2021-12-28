@@ -1,22 +1,14 @@
 /**
-Declare global APIs
-**************************************/
-
-var categoryAPI = 'https://passsecureapi.azurewebsites.net/Categories'
-var siteAPI = 'https://passsecureapi.azurewebsites.net/Sites'
-var headers = {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*'
-}
-
-/**
 Get sites
 **************************************/
 
 window.onload = function () {
-    fetch(categoryAPI, {
+    fetch('https://passsecureapi.azurewebsites.net/Category', {
         method: 'GET',
-        headers: headers
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        },
     }).then(response => {
         return response.json()
     }).then(data =>
@@ -25,9 +17,12 @@ window.onload = function () {
 }
 
 function getSites(id) {
-    fetch(siteAPI + `/${id}/Categories`, {
+    fetch(`https://passsecureapi.azurewebsites.net/Site/GetByCategoryID/${id}`, {
         method: 'GET',
-        headers: headers
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        },
     }).then(response => {
         return response.json()
     }).then(data =>
@@ -60,7 +55,7 @@ function processSites(response) {
             className: 'controls-icon',
             src: 'assets/delete.svg',
         })
-        deleteLink.href = `${siteAPI}/${i.id}`;
+        deleteLink.href = `https://passsecureapi.azurewebsites.net/Site?Id=${i.id}`;
         deleteLink.onclick = deleteSite;
 
         let editLink = document.createElement('a');
@@ -90,8 +85,7 @@ function deleteSite(e) {
     var e = e.target.href;
 
     fetch(e, {
-        method: 'DELETE',
-        headers: headers
+        method: 'DELETE'
     }).then(() => {
         window.location.reload();
     });
@@ -111,9 +105,12 @@ function addCategory() {
             "name": name
         };
 
-        fetch(categoryAPI, {
+        fetch('https://passsecureapi.azurewebsites.net/Category', {
             method: 'POST',
-            headers: headers,
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
             body: JSON.stringify(data)
         }).then(response => {
             return response.json()
@@ -158,7 +155,7 @@ function processCategories(response) {
             className: 'delete-category controls-icon',
             src: 'assets/delete.svg',
         })
-        deleteCategory.href = `${categoryAPI}/${i.id}`;
+        deleteCategory.href = `https://passsecureapi.azurewebsites.net/Category?Id=${i.id}`;
         deleteCategory.onclick = deleteSelectedCategory;
 
         categoryItem.appendChild(categoryTitle);
@@ -216,7 +213,10 @@ function deleteSelectedCategory(e) {
 
     fetch(e, {
         method: 'DELETE',
-        headers: headers,
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        },
     }).then(() => {
         window.location.reload();
     });
