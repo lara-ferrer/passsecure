@@ -155,7 +155,7 @@ function processCategories(response) {
             className: 'delete-category controls-icon',
             src: 'assets/delete.svg',
         })
-        deleteCategory.href = `https://passsecureapi.azurewebsites.net/Category?Id=${i.id}`;
+        deleteCategory.href = `https://localhost:5001/Category/${i.id}`;
         deleteCategory.onclick = deleteSelectedCategory;
 
         categoryItem.appendChild(categoryTitle);
