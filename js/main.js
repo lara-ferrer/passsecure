@@ -181,8 +181,10 @@ Set active category
 function activateCategories() {
     var categories = Array.from(document.getElementsByClassName('category'));
     var siteView = document.getElementById('site-view');
-    siteView.style.display = 'none';
-    
+    if (siteView != null) {
+        siteView.style.display = 'none';
+    }
+
     const setActive = id => (e) => {
         e.preventDefault();
         categories.forEach(category => {

@@ -24,10 +24,13 @@ const form = document.getElementById("site-form");
 
 function getSingleSite(response) {
     response.forEach((item) => {
+        console.log(item)
         let mainTitle = document.getElementById('site__title');
         mainTitle.innerText = `Editar ${item.name}`;
     
         let id = item.id;
+        let creationDate = item.creationDate;
+
         let name = document.getElementById('name');
         name.value = `${item.name}`;
     
@@ -40,7 +43,7 @@ function getSingleSite(response) {
         let pass = document.getElementById('pass');
         pass.value = `${item.password}`;
     
-        let desc = document.getElementById('desc');
+        let desc = document.getElementById('description');
         desc.innerText = `${item.description}`;
 
         editSite(id, creationDate);
