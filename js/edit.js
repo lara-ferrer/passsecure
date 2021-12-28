@@ -1,4 +1,15 @@
 /**
+Declare global APIs
+**************************************/
+
+var categoryAPI = 'https://passsecureapi.azurewebsites.net/Categories'
+var siteAPI = 'https://passsecureapi.azurewebsites.net/Sites'
+var headers = {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*'
+}
+
+/**
 Edit sites
 **************************************/
 const queryString = window.location.search;
@@ -7,12 +18,9 @@ const siteId = urlParams.get('id');
 const categoryId = urlParams.get('category');
 
 if (siteId) {
-    fetch(`https://passsecureapi.azurewebsites.net/Site/GetBySiteID/${siteId}`, {
+    fetch(siteAPI + `/${siteId}`, {
     method: 'GET',
-    headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-    },
+    headers: headers
     }).then(response => {
         return response.json()
     }).then(data => 
@@ -62,13 +70,10 @@ if (siteId != null) {
             
             const plainFormData = Object.fromEntries(formData.entries());
             const formDataJsonString = JSON.stringify(plainFormData);
-            fetch('https://passsecureapi.azurewebsites.net/Site', {
+            fetch(siteAPI, {
             method: 'PUT',
             body: formDataJsonString,
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
+            headers: headers
             }).then(response => {
                 return response.json()
             }).then(response => 
@@ -116,13 +121,10 @@ form.addEventListener("submit", function(e) {
     const plainFormData = Object.fromEntries(formData.entries());
 	   const formDataJsonString = JSON.stringify(plainFormData);
     
-    fetch('https://passsecureapi.azurewebsites.net/Site', {
+    fetch(siteAPI, {
     method: 'POST',
     body: formDataJsonString,
-    headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-    },
+    headers: headers
     }).then(response => {
         return response.json()
     }).then(response => 
